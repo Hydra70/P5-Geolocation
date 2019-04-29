@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <script src="p5/p5.min.js"></script>
+    <script src="p5.geolocation-master/p5.geolocation.js"></script>
+    
+    <style>
+      body{
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <p id="gotgeo"></p>
+    <h1 id="lat"></h1>
+    <h1 id="lon"></h1>
+    <script>
+      
+      
+      
+      function preload() {
+        
+      }
+      
+      function setup() {
+        
+        getCurrentPosition(doThisOnLocation);
+        
+        /*if(geoCheck() == true){
+            document.getElementById('gotgeo').innerHTML = "Geolocation avaliable";
+        	}
+        else{
+            document.getElementById('gotgeo').innerHTML = "No location avaliable";
+          }*/
+      }
+      
+      function draw() {
+        
+      }
+      
+      function doThisOnLocation(position){
+        document.getElementById('lat').innerHTML = "lat: " + position.latitude;
+        document.getElementById('lon')"long: " + position.longitude;
+      }
+      
+    </script>
+  </body>
+</html>
