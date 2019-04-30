@@ -3,7 +3,7 @@
     <script src="p5/p5.min.js"></script>
     <script src="p5.geolocation-master/p5.geolocation.js"></script>
     
-     <style>
+    <style>
       body{
         overflow: hidden;
         padding: 0;
@@ -13,12 +13,16 @@
   </head>
   
   <body>
-    <p id="gotgeo"></p>
-    <h1 id="lat"></h1>
-    <h1 id="lon"></h1>
+    <h1 id="locAvail"></h1>
+    <h1 id="distance"></h1>
+    
     <script>
-      
-      
+      var $ = document.getElementById('distance');
+      var distance;
+      var mylat;
+      var mylon;
+      var airdroplat = 21.310222;
+      var airdroplon = -157.837545;
       
       function preload() {
         
@@ -26,23 +30,25 @@
       
       function setup() {
         
-        getCurrentPosition(doThisOnLocation);
         
         if(geoCheck() == true){
-            document.getElementById('gotgeo').innerHTML = "Geolocation avaliable";
+            $.getElementById('locAvail').innerHTML = "Ready";
+            distance = calc(GeoDistance(mylat,mylong,airdroplat,airdroplon,'mi'));
         	}
         else{
-            document.getElementById('gotgeo').innerHTML = "No location avaliable";
+            $.getElementById('locAvail').innerHTML = "Must have GPS Enabled";
           }
+        intervalCurrentPosition(positionPing,1000);
       }
       
       function draw() {
         
       }
       
-      function doThisOnLocation(position){
-        document.getElementById('lat').innerHTML = "lat: " + position.latitude;
-        document.getElementById('lon').innerHTML = "long: " + position.longitude;
+      function positionPing(position){
+        mylat = position.latitude;
+        mylon = position.longitude;
+        $.getElementById('distance').innerHTML = distance;
       }
       
     </script>
