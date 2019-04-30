@@ -17,19 +17,14 @@
     <h1 id="distance"></h1>
     
     <script>
-      var $ = document;
+      var $ = document
       var distance;
       var mylat;
       var mylon;
-      var airdroplat = 21.310222;
-      var airdroplon = -157.837545;
-      
-      function preload() {
-        
-      }
+      var supplylat = 21.311285;
+      var supplylon = -157.837918;
       
       function setup() {
-        
         
         if(geoCheck() == true){
             $.getElementById('locAvail').innerHTML = "Ready";
@@ -38,19 +33,19 @@
             $.getElementById('locAvail').innerHTML = "Must have GPS Enabled";
           }
         intervalCurrentPosition(positionPing,1000);
-      }
-      
-      function draw() {
-        
+        enableHighAccuracy: true;
       }
       
       function positionPing(position){
         mylat = position.latitude;
         mylon = position.longitude;
-        distance = calc(GeoDistance(mylat,mylong,airdroplat,airdroplon,'mi'));
-        $.getElementById('distance').innerHTML = distance;
-        if (distance < 0.5) {
+        distance = calc(GeoDistance(mylat,mylong,supplylat,supplylon,'mi'));
+        $.getElementById('distance').innerHTML = distance.toFixed(5);
+        if (distance < 0.001) {
           $.getElementById('locAvail').innerHTML = "You're at the Supply Drop.";
+        }
+        else {
+          $.getElementById('locAvail').innerHTML = "Got nothing over here.";
         }
       }
       
