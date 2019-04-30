@@ -49,6 +49,9 @@
         mylon = position.longitude;
         distance = calc(GeoDistance(mylat,mylong,airdroplat,airdroplon,'mi'));
         $.getElementById('distance').innerHTML = distance;
+        if (distance < 0.5) {
+          $.getElementById('locAvail').innerHTML = "You're at the Supply Drop.";
+        }
       }
       
     </script>
