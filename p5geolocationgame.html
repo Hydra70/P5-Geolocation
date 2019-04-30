@@ -33,7 +33,6 @@
         
         if(geoCheck() == true){
             $.getElementById('locAvail').innerHTML = "Ready";
-            distance = calc(GeoDistance(mylat,mylong,airdroplat,airdroplon,'mi'));
         	}
         else{
             $.getElementById('locAvail').innerHTML = "Must have GPS Enabled";
@@ -48,6 +47,7 @@
       function positionPing(position){
         mylat = position.latitude;
         mylon = position.longitude;
+        distance = calc(GeoDistance(mylat,mylong,airdroplat,airdroplon,'mi'));
         $.getElementById('distance').innerHTML = distance;
       }
       
